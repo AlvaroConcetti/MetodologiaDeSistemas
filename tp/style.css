@@ -1,0 +1,273 @@
+/* =========================================
+   VARIABLES PREMIUM (DARK MODE & NEON)
+========================================= */
+:root {
+    --bg-dark: #0f172a;
+    --bg-darker: #020617;
+    --glass-bg: rgba(30, 41, 59, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --neon-blue: #3b82f6;
+    --neon-purple: #8b5cf6;
+    --admin-color: #f59e0b;
+    --danger-color: #ef4444;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+/* =========================================
+   RESETEO GENERAL
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-darker);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* LUCES DE FONDO FACHERAS */
+.bg-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.4;
+}
+.glow-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: var(--neon-purple); }
+.glow-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: var(--neon-blue); }
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* =========================================
+   EFECTO GLASSMORPHISM (CRISTAL)
+========================================= */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+}
+
+.inner-panel { padding: 20px; background: rgba(0,0,0,0.2); }
+
+h2 { font-size: 28px; font-weight: 700; margin-bottom: 25px; letter-spacing: -0.5px; }
+h3 { font-size: 20px; font-weight: 600; margin-bottom: 20px; color: #cbd5e1; }
+.text-neon { background: linear-gradient(to right, var(--neon-blue), var(--neon-purple)); -webkit-background-clip: text; color: transparent; font-weight: 700; }
+.text-admin { color: var(--admin-color); text-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+
+/* =========================================
+   NAVEGACIÓN
+========================================= */
+.nav { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 40px; }
+.nav button {
+    background: rgba(255,255,255,0.05);
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.nav button:hover { background: rgba(255,255,255,0.1); color: #fff; transform: translateY(-2px); }
+.nav button.active {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color: #fff;
+    box-shadow: 0 10px 20px -10px var(--neon-purple);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.nav button.admin-only { background: rgba(245, 158, 11, 0.1); color: var(--admin-color); border: 1px solid rgba(245, 158, 11, 0.2); }
+.nav button.admin-only:hover { background: var(--admin-color); color: #000; box-shadow: 0 10px 20px -10px var(--admin-color); }
+
+/* =========================================
+   FORMULARIOS Y INPUTS
+========================================= */
+.auth-card { max-width: 450px; margin: 0 auto; text-align: center; }
+.icon-header { font-size: 50px; margin-bottom: 10px; }
+.form-group { margin-bottom: 20px; text-align: left; }
+.form-group label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+input, select {
+    width: 100%;
+    padding: 15px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.3s;
+    outline: none;
+}
+input:focus, select:focus { border-color: var(--neon-blue); box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2); background: rgba(0,0,0,0.4); }
+
+.input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+/* =========================================
+   BOTONES
+========================================= */
+button { border: none; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all 0.3s; }
+.btn-group { display: flex; gap: 15px; margin-top: 25px; }
+.w-100 { width: 100%; }
+
+.btn-neon {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color: #fff; padding: 15px 30px; border-radius: 12px; font-weight: 600;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); flex: 1;
+}
+.btn-neon:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6); }
+
+.btn-secondary {
+    background: transparent; color: #fff; padding: 15px 30px; border-radius: 12px;
+    border: 1px solid var(--glass-border); font-weight: 500; flex: 1;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: #fff; }
+
+.btn-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger-color); padding: 12px 25px; border-radius: 12px; border: 1px solid rgba(239,68,68,0.3); font-weight: 600; }
+.btn-danger:hover { background: var(--danger-color); color: #fff; box-shadow: 0 5px 15px rgba(239,68,68,0.4); }
+
+.btn-admin { background: var(--admin-color); color: #000; padding: 15px; border-radius: 12px; font-weight: 700; }
+.btn-admin:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4); }
+
+/* =========================================
+   GRILLA DE PRODUCTOS (TARJETAS)
+========================================= */
+.productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
+.productos-admin { display: grid; grid-template-columns: 1fr; gap: 15px; }
+
+.producto-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.producto-card:hover { transform: translateY(-10px); border-color: var(--neon-purple); box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(139, 92, 246, 0.2); }
+.producto-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 14px; margin-bottom: 20px; }
+.producto-card h4 { font-size: 18px; font-weight: 600; color: #fff; }
+.precio { font-size: 24px; font-weight: 700; color: var(--neon-blue); margin: 10px 0; }
+.stock { font-size: 13px; color: var(--admin-color); background: rgba(245, 158, 11, 0.1); padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 15px; }
+
+/* =========================================
+   LISTAS Y CHECKOUT
+========================================= */
+.checkout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+@media(max-width: 768px) { .checkout-grid { grid-template-columns: 1fr; } }
+.admin-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+@media(max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
+
+.list-container { display: flex; flex-direction: column; gap: 15px; }
+.pedido-item {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.pedido-item strong { color: var(--neon-blue); font-size: 18px; }
+
+.total { font-size: 28px; text-align: right; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border); }
+
+.divider { height: 1px; background: var(--glass-border); margin: 40px 0; }
+
+/* =========================================
+   MENSAJES DE ALERTA
+========================================= */
+.message { padding: 15px; border-radius: 12px; margin-top: 20px; font-weight: 500; text-align: center; backdrop-filter: blur(5px); }
+.message.success { background-color: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); display: block; }
+.message.error { background-color: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); display: block; }
+
+/* SECCIONES OCULTAS */
+.section { display: none; }
+.section.active { display: block; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+/* =========================================
+   FIX DEFINITIVO PARA INPUTS BLANCOS (CONTRATE)
+   Pega esto al final de tu archivo style.css
+========================================= */
+
+/* Forzamos que TODOS los inputs y selects dentro de la app sean oscuros con texto claro */
+.app-container input,
+.app-container select,
+#clientes input,
+#admin input,
+#pedido input {
+    background-color: #111827 !important; /* Un gris casi negro para el fondo del input */
+    color: #f8fafc !important;           /* Texto typed blanco/gris muy claro */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Borde sutil */
+}
+
+/* Solución específica para el autocompletado (Autofill) de Chrome/Edge */
+/* Los navegadores por defecto ponen fondo amarillo/crema que rompe el modo oscuro */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #111827 inset !important; /* Forzamos fondo oscuro en autofill con una sombra interna */
+    -webkit-text-fill-color: #ffffff !important;           /* Forzamos texto blanco en autofill */
+}
+
+/* Aseguramos que el texto de ayuda (placeholder) siga siendo legible pero atenuado */
+input::placeholder {
+    color: #94a3b8 !important;
+    opacity: 0.8;
+}
+
+/* Forzamos el color del texto cuando se hace foco, para que no cambie a oscuro si el navegador quiere */
+input:focus, select:focus {
+    color: #ffffff !important;
+}
+/* =========================================
+   FIX DEFINITIVO: TARJETAS DE PEDIDOS BLANCAS
+   Esto pisa el "background:white" del apps.js
+========================================= */
+
+#listaPedidos > div,
+#listaMisPedidos > div {
+    background: rgba(0, 0, 0, 0.3) !important; /* Fondo cristal oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important; /* Borde sutil */
+    color: #f8fafc !important; /* Texto blanco principal */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+#listaPedidos > div:hover,
+#listaMisPedidos > div:hover {
+    border-color: #8b5cf6 !important; /* Brillo violeta al pasar el mouse */
+    transform: translateY(-5px) !important;
+}
+
+#listaPedidos > div h3,
+#listaMisPedidos > div h3 {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+#listaPedidos > div strong,
+#listaMisPedidos > div strong {
+    color: #3b82f6 !important; /* Etiquetas en azul neón */
+}
+
+#listaPedidos > div p,
+#listaMisPedidos > div p {
+    color: #cbd5e1 !important; /* Valores en gris clarito */
+}
