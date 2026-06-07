@@ -1,0 +1,320 @@
+/* =========================================
+   VARIABLES (DARK MODE & NEON)
+========================================= */
+:root {
+    --bg-darker: #020617;
+    --glass-bg: rgba(30, 41, 59, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --neon-blue: #3b82f6;
+    --neon-purple: #8b5cf6;
+    --admin-color: #f59e0b;
+    --danger-color: #ef4444;
+    --success-color: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --input-bg: #111827;
+}
+
+/* =========================================
+   RESET
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-darker);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* LUCES DE FONDO */
+.bg-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.4;
+}
+.glow-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: var(--neon-purple); }
+.glow-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: var(--neon-blue); }
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* =========================================
+   GLASSMORPHISM
+========================================= */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+}
+
+.inner-panel { padding: 20px; background: rgba(0, 0, 0, 0.2); }
+
+/* =========================================
+   TIPOGRAFÍA
+========================================= */
+h2 { font-size: 28px; font-weight: 700; margin-bottom: 25px; letter-spacing: -0.5px; }
+h3 { font-size: 20px; font-weight: 600; margin-bottom: 20px; color: #cbd5e1; }
+h4 { font-size: 18px; font-weight: 600; color: #fff; }
+
+.text-neon {
+    background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+.text-admin { color: var(--admin-color); text-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+.text-muted { color: var(--text-muted); font-size: 0.9em; }
+.text-error { color: var(--danger-color); }
+.text-center { text-align: center; }
+
+/* =========================================
+   NAVEGACIÓN
+========================================= */
+.nav { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 40px; }
+.nav button {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.nav button:hover { background: rgba(255, 255, 255, 0.1); color: #fff; transform: translateY(-2px); }
+.nav button.active {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color: #fff;
+    box-shadow: 0 10px 20px -10px var(--neon-purple);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.nav button.admin-only,
+.nav button.vendedor-only {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--admin-color);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+.nav button.admin-only:hover,
+.nav button.vendedor-only:hover {
+    background: var(--admin-color);
+    color: #000;
+    box-shadow: 0 10px 20px -10px var(--admin-color);
+}
+
+/* =========================================
+   FORMULARIOS E INPUTS
+========================================= */
+.auth-card { max-width: 450px; margin: 0 auto; text-align: center; }
+.icon-header { font-size: 50px; margin-bottom: 10px; }
+.avatar-circle { font-size: 60px; margin-bottom: 10px; }
+.form-group { margin-bottom: 20px; text-align: left; }
+.form-group label {
+    display: block; margin-bottom: 8px; font-size: 13px;
+    color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;
+}
+
+input, select {
+    width: 100%;
+    padding: 15px;
+    background: var(--input-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-size: 15px;
+    transition: all 0.3s;
+    outline: none;
+}
+input:focus, select:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+input::placeholder { color: var(--text-muted); opacity: 0.8; }
+
+/* Autofill de Chrome/Edge: mantiene el modo oscuro */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px var(--input-bg) inset !important;
+    -webkit-text-fill-color: var(--text-main) !important;
+}
+
+.input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+/* =========================================
+   BOTONES
+========================================= */
+button { border: none; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all 0.3s; }
+.btn-group { display: flex; gap: 15px; margin-top: 25px; }
+.w-100 { width: 100%; }
+
+.btn-neon {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color: #fff; padding: 15px 30px; border-radius: 12px; font-weight: 600;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); flex: 1;
+}
+.btn-neon:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6); }
+
+.btn-secondary {
+    background: transparent; color: #fff; padding: 15px 30px; border-radius: 12px;
+    border: 1px solid var(--glass-border); font-weight: 500; flex: 1;
+}
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: #fff; }
+
+.btn-danger {
+    background: rgba(239, 68, 68, 0.1); color: var(--danger-color);
+    padding: 12px 25px; border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.3); font-weight: 600;
+}
+.btn-danger:hover { background: var(--danger-color); color: #fff; box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4); }
+
+.btn-admin { background: var(--admin-color); color: #000; padding: 15px; border-radius: 12px; font-weight: 700; }
+.btn-admin:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4); }
+
+/* =========================================
+   GRILLA DE PRODUCTOS (CATÁLOGO)
+========================================= */
+.productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
+
+.producto-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.producto-card:hover { transform: translateY(-10px); border-color: var(--neon-purple); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.2); }
+.producto-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 14px; margin-bottom: 20px; }
+.precio { font-size: 24px; font-weight: 700; color: var(--neon-blue); margin: 10px 0; }
+
+.producto-controles { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 10px; }
+.producto-controles button { width: 40px; height: 40px; border-radius: 10px; background: rgba(255, 255, 255, 0.08); color: #fff; font-size: 20px; }
+.producto-controles button:hover:not(:disabled) { background: var(--neon-blue); }
+.producto-controles button:disabled { opacity: 0.3; cursor: not-allowed; }
+.cantidad-display { font-size: 18px; font-weight: 600; min-width: 24px; }
+
+/* =========================================
+   INVENTARIO (ADMIN PRODUCTOS)
+========================================= */
+.productos-admin { display: flex; flex-direction: column; gap: 12px; }
+.inv-item {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+.inv-nombre { flex: 1; min-width: 140px; }
+.inv-stock { font-weight: 700; color: var(--admin-color); }
+
+/* Stock bajo (1 a 4): resaltado ámbar */
+.inv-item.stock-bajo { border-color: var(--admin-color); background: rgba(245, 158, 11, 0.08); }
+.inv-item.stock-bajo .inv-stock { color: var(--admin-color); }
+
+/* Sin stock (0): resaltado rojo */
+.inv-item.sin-stock { border-color: var(--danger-color); background: rgba(239, 68, 68, 0.08); }
+.inv-item.sin-stock .inv-stock { color: var(--danger-color); }
+
+/* =========================================
+   CARRITO / CHECKOUT
+========================================= */
+.checkout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.admin-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+@media (max-width: 768px) {
+    .checkout-grid, .admin-grid { grid-template-columns: 1fr; }
+}
+
+.list-container { display: flex; flex-direction: column; gap: 15px; }
+
+.carrito-item {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.domicilio-box {
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+.domicilio-box strong { color: var(--neon-blue); }
+
+.total { font-size: 28px; text-align: right; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border); }
+.total-linea { line-height: 1.4; }
+.cupon-descuento { color: var(--success-color); font-size: 20px; }
+.divider { height: 1px; background: var(--glass-border); margin: 40px 0; }
+
+/* Caja de cupón */
+.cupon-box { display: flex; gap: 12px; margin-top: 20px; }
+.cupon-box input { flex: 1; }
+.cupon-box button { flex: 0 0 auto; padding: 15px 25px; }
+
+/* =========================================
+   TARJETAS DE PEDIDO
+========================================= */
+.grupo-pedidos-titulo { margin: 30px 0 15px; font-size: 22px; }
+
+.pedido-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+.pedido-card:hover { border-color: var(--neon-purple); transform: translateY(-4px); }
+.pedido-card h3 { color: #fff; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 15px; }
+.pedido-card strong { color: var(--neon-blue); }
+.pedido-card p { color: #cbd5e1; margin-bottom: 6px; }
+
+.pedido-lineas { margin-bottom: 12px; }
+.pedido-linea { display: flex; justify-content: space-between; color: #cbd5e1; padding: 4px 0; }
+
+.acciones-pedido { margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
+.acciones-pedido button { padding: 10px 18px; border-radius: 10px; background: rgba(255, 255, 255, 0.08); color: #fff; font-weight: 600; }
+.acciones-pedido button:hover { background: var(--neon-blue); }
+
+/* Badge de estado */
+.badge-estado { padding: 4px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; text-transform: capitalize; }
+.estado-sin-confirmar .badge-estado { background: rgba(245, 158, 11, 0.15); color: var(--admin-color); }
+.estado-pendiente .badge-estado { background: rgba(59, 130, 246, 0.15); color: var(--neon-blue); }
+.estado-entregado .badge-estado { background: rgba(16, 185, 129, 0.15); color: var(--success-color); }
+.estado-cancelado .badge-estado { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+
+/* =========================================
+   MENSAJES
+========================================= */
+.message { padding: 15px; border-radius: 12px; margin-top: 20px; font-weight: 500; text-align: center; display: none; }
+.message.success { background-color: rgba(16, 185, 129, 0.1); color: var(--success-color); border: 1px solid rgba(16, 185, 129, 0.3); }
+.message.error { background-color: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+/* =========================================
+   SECCIONES
+========================================= */
+.section { display: none; }
+.section.active { display: block; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+

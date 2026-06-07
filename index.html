@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Paint - E-Commerce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Módulos por integrante (se cargan en orden) -->
+    <script src="core-auth.js" defer></script>
+    <script src="catalogo-carrito.js" defer></script>
+    <script src="checkout-cupones.js" defer></script>
+    <script src="pedidos-vendedor.js" defer></script>
+    <script src="admin-productos.js" defer></script>
+</head>
+
+<body>
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <div class="app-container">
+
+        <!-- ================= NAVEGACIÓN (visible según rol) ================= -->
+        <div id="navPrincipal" class="nav glass-panel" style="display:none;">
+            <button class="active" onclick="mostrarSeccion('clientes')">Mi Cuenta</button>
+            <button class="cliente-only" onclick="mostrarSeccion('carrito')">Ir a Comprar</button>
+            <button class="cliente-only" onclick="mostrarSeccion('pedido')">Finalizar Pedido</button>
+            <button class="cliente-only" onclick="mostrarSeccion('misPedidos')">📦 Mis Pedidos</button>
+            <button class="admin-only" onclick="mostrarSeccion('admin')">⚙️ Gestión de Productos</button>
+            <button class="vendedor-only" onclick="mostrarSeccion('pedidosAdmin')">📊 Gestión de Pedidos</button>
+        </div>
+
+        <!-- ================= CUENTA / LOGIN / REGISTRO ================= -->
+        <div id="clientes" class="section active">
+            <div id="vistaAuth" class="auth-card glass-panel">
+                <div class="icon-header">🔐</div>
+                <h2>Acceso</h2>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="emailSimple" placeholder="ejemplo@correo.com" autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="passwordLogin" placeholder="Contraseña únicamente para el admin y el vendedor">
+                </div>
+
+                <div class="btn-group">
+                    <button onclick="intentarIngresar()" class="btn-neon">Iniciar Sesión</button>
+                    <button class="btn-secondary" onclick="alternarFormulario('registro')">Crear Cuenta</button>
+                </div>
+                <div id="mensajeAcceso" class="message"></div>
+            </div>
+
+            <div id="vistaRegistro" class="auth-card glass-panel" style="display: none; text-align: left;">
+                <h2 style="text-align: center;">Nueva Cuenta</h2>
+                <form id="formCliente">
+                    <div class="input-grid">
+                        <div class="form-group"><label>Nombre</label><input type="text" id="nombre" required></div>
+                        <div class="form-group"><label>Email</label><input type="email" id="email" required></div>
+                        <div class="form-group"><label>País</label><input type="text" id="pais" required></div>
+                        <div class="form-group"><label>Provincia</label><input type="text" id="provincia" required></div>
+                    </div>
+                    <div class="form-group"><label>Localidad</label><input type="text" id="localidad" required></div>
+                    <div class="input-grid">
+                        <div class="form-group"><label>Calle</label><input type="text" id="calle" required></div>
+                        <div class="form-group"><label>Número</label><input type="number" id="numero" min="1" required></div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn-neon">Completar Registro</button>
+                        <button type="button" class="btn-secondary" onclick="alternarFormulario('acceso')">Cancelar</button>
+                    </div>
+                </form>
+                <div id="mensajeCliente" class="message"></div>
+            </div>
+
+            <div id="panelUsuario" class="auth-card glass-panel text-center" style="display: none;">
+                <div class="avatar-circle">🧑‍🚀</div>
+                <h2>Bienvenido,<br><span id="nombreUsuarioLogueado" class="text-neon"></span></h2>
+                <p class="text-muted">Rol activo: <span id="rolActual" class="text-neon">cliente</span></p>
+                <button onclick="cerrarSesion()" class="btn-danger" style="margin-top:25px;">Cerrar Sesión</button>
+            </div>
+        </div>
+
+        <!-- ================= CATÁLOGO + CARRITO (Cliente) ================= -->
+        <div id="carrito" class="section glass-panel">
+            <h2>🛍️ Catálogo de Productos</h2>
+            <div class="productos" id="productos"></div>
+            <div class="divider"></div>
+            <h3>🛒 Tu Carrito:</h3>
+            <div id="itemsCarrito" class="list-container"></div>
+
+            <div class="cupon-box">
+                <input type="text" id="codigoCupon" placeholder="Código de cupón (ej: PROMO500)">
+                <button onclick="aplicarCupon()" class="btn-secondary">Aplicar</button>
+            </div>
+
+            <div id="totalCarrito" class="total text-neon" style="display:none;"></div>
+            <div id="mensajeCarrito" class="message"></div>
+        </div>
+
+        <!-- ================= CHECKOUT (Cliente) ================= -->
+        <div id="pedido" class="section glass-panel">
+            <h2>💳 Finalizar Pedido</h2>
+            <div class="checkout-grid">
+                <div>
+                    <h3>Resumen de Compra</h3>
+                    <div id="resumenPedido" class="list-container"></div>
+                    <div id="totalPedido" class="total text-neon" style="display:none;"></div>
+                </div>
+                <div>
+                    <h3>Datos de Envío</h3>
+                    <div id="infoDomicilioPedido" class="domicilio-box"></div>
+                    <div class="form-group">
+                        <label>Domicilio alternativo (opcional)</label>
+                        <input type="text" id="domicilio" placeholder="Dejar vacío para usar el domicilio registrado">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Forma de pago</label>
+                        <select id="pago">
+                            <option value="">Seleccionar método...</option>
+                            <option value="efectivo">💵 Efectivo contra entrega</option>
+                        </select>
+                    </div>
+
+                    <button onclick="confirmarPedido()" id="btnConfirmar" class="btn-neon w-100">Confirmar Pedido</button>
+                </div>
+            </div>
+            <div id="mensajePedido" class="message"></div>
+        </div>
+
+        <!-- ================= MIS PEDIDOS (Cliente) ================= -->
+        <div id="misPedidos" class="section glass-panel">
+            <h2>📦 Historial de Pedidos</h2>
+            <div id="listaMisPedidos" class="list-container"></div>
+        </div>
+
+        <!-- ================= GESTIÓN DE PRODUCTOS (Administrador de productos) ================= -->
+        <div id="admin" class="section glass-panel admin-glow">
+            <h2 class="text-admin">⚙️ Gestión de Productos</h2>
+
+            <div class="admin-grid">
+                <div class="glass-panel inner-panel">
+                    <h3>➕ Crear Producto</h3>
+                    <div class="form-group"><input type="text" id="nuevaImagen" placeholder="URL de la imagen (opcional)"></div>
+                    <div class="form-group"><input type="text" id="nuevoNombre" placeholder="Nombre del producto"></div>
+                    <div class="input-grid">
+                        <div class="form-group"><input type="number" id="nuevoPrecio" placeholder="Precio ($)" min="1" step="0.01"></div>
+                        <div class="form-group"><input type="number" id="nuevoStock" placeholder="Stock inicial" min="1"></div>
+                    </div>
+                    <button onclick="crearProducto()" class="btn-admin w-100">Publicar Producto</button>
+                </div>
+
+                <div class="glass-panel inner-panel">
+                    <h3>📊 Inventario</h3>
+                    <p class="text-muted" style="margin-bottom:15px;">Listado de productos y stock disponible.</p>
+                    <div class="productos-admin" id="stockAdmin"></div>
+                </div>
+            </div>
+            <div id="mensajeAdmin" class="message"></div>
+        </div>
+
+        <!-- ================= GESTIÓN DE PEDIDOS (Vendedor) ================= -->
+        <div id="pedidosAdmin" class="section glass-panel admin-glow">
+            <h2 class="text-admin">📊 Gestión de Pedidos</h2>
+            <div id="mensajePedidosAdmin" class="message"></div>
+            <div id="listaPedidos" class="list-container"></div>
+        </div>
+    </div>
+</body>
+
+</html>
