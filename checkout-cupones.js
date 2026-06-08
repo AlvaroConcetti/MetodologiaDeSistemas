@@ -1,5 +1,5 @@
 // ============================================================
-//  CHECKOUT, MIS PEDIDOS Y CUPONES   (Integrante 3)
+//  CHECKOUT, MIS PEDIDOS Y CUPONES   
 //  Confirmación de pedido, historial del cliente y cupones.
 // ============================================================
 
