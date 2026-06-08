@@ -1,5 +1,5 @@
 // ============================================================
-//  GESTIÓN DE PEDIDOS - VENDEDOR   (Integrante 4)
+//  GESTIÓN DE PEDIDOS - VENDEDOR   
 //  Listado, tarjetas, cambios de estado y cancelación.
 // ============================================================
 
