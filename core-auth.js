@@ -1,5 +1,5 @@
 // ============================================================
-//  CORE + AUTENTICACIÓN Y ROLES   (Integrante 1)
+//  CORE + AUTENTICACIÓN Y ROLES   
 //  Config Supabase, estado global, helpers, login, registro,
 //  roles, navegación y mensajes.
 // ============================================================
