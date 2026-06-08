@@ -1,5 +1,5 @@
 // ============================================================
-//  CATÁLOGO Y CARRITO   (Integrante 2)
+//  CATÁLOGO Y CARRITO
 //  Carga de productos, vista del catálogo y manejo del carrito.
 // ============================================================
 
