@@ -1,5 +1,5 @@
 // ============================================================
-//  CATÁLOGO Y CARRITO   
+//  CATÁLOGO Y CARRITO  
 //  Carga de productos, vista del catálogo y manejo del carrito.
 // ============================================================
 
